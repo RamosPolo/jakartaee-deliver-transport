@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>Enregistrer un Colis</title>
+</head>
+<body>
+<h1>Enregistrer un Colis</h1>
+<form action="/jakartaee-deliver-transport/storeColis" method="POST">
+
+    <!-- Poids -->
+    <label for="poid">Poids (en grammes) :</label><br>
+    <input type="number" id="poid" name="poid" required><br><br>
+
+    <!-- Valeur -->
+    <label for="value">Valeur (en euros) :</label><br>
+    <input type="number" id="value" name="prix" step="0.01" required><br><br>
+
+    <!-- Origine (Pair<Long, Long>) -->
+    <label for="origine_1">Origine (lattitude) :</label><br>
+    <input type="number" id="origine_1" name="origine_1" required><br><br>
+
+    <label for="origine_2">Origine (longitude) :</label><br>
+    <input type="number" id="origine_2" name="origine_2" required><br><br>
+
+    <!-- Destination (Pair<Long, Long>) -->
+    <label for="destination_1">Destination (lattitude) :</label><br>
+    <input type="number" id="destination_1" name="destination_1" required><br><br>
+
+    <label for="destination_2">Destination (longitude) :</label><br>
+    <input type="number" id="destination_2" name="destination_2" required><br><br>
+
+    <!-- Localisation (Pair<Long, Long>) -->
+    <label for="localisation_1">Localisation actuelle (lattitude) :</label><br>
+    <input type="number" id="localisation_1" name="localisation_1" required><br><br>
+
+    <label for="localisation_2">Localisation actuelle (longitude) :</label><br>
+    <input type="number" id="localisation_2" name="localisation_2" required><br><br>
+
+    <!-- État du colis -->
+    <label for="etat">Etat du colis :</label><br>
+    <input type="text" id="etat" name="etat" required><br><br>
+
+    <!-- Bouton de soumission -->
+    <input type="submit" value="Enregistrer le colis">
+</form>
+<p><a href="/jakartaee-deliver-transport">Retour a l'accueil</a></p>
+</body>
+</html>
