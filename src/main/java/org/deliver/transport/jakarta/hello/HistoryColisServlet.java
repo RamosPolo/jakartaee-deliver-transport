@@ -25,6 +25,8 @@ public class HistoryColisServlet extends HttpServlet {
         // Cherche les historique dans la BDD
         List<ColisHistory> listHistory = repo.findHistorybyId(colisId);
 
+        // penser à les passer en paramètre post pour les afficher
+
         req.getRequestDispatcher("/WEB-INF/historiqueColis.jsp").forward(req, resp);
     }
 }
