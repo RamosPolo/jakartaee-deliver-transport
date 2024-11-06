@@ -20,15 +20,12 @@ public class colisRepository {
 
     public Colis create(Colis c) {
         logger.info("Creating colis " + c.getId());
-        ColisHistory history = new ColisHistory(c);
-        em.persist(history);
         em.persist(c);
-
         return c;
     }
 
     public List<Colis> findAll() {
-        logger.info("Getting all colis");
+        logger.info("Getting all colis (Repo)");
         return em.createQuery("SELECT c FROM Colis c", Colis.class).getResultList();
     }
 
@@ -46,12 +43,7 @@ public class colisRepository {
 
     public Colis update(Colis c) {
         logger.info("Updating colis " + c.getId());
-
-        // on recup le colis d'avant
-        Colis oldColis = em.find(Colis.class, c.getId());
-        // on créer l'historique avec le colis
-        ColisHistory ch = new ColisHistory(oldColis);
-        em.persist(ch);
+        insertHistory(c);
         return em.merge(c);
     }
 
@@ -60,5 +52,24 @@ public class colisRepository {
         return em.createQuery("SELECT h FROM ColisHistory h WHERE h.colisId = :colisId", ColisHistory.class)
                 .setParameter("colisId", idColis)
                 .getResultList();
+    }
+
+    public ColisHistory insertHistory(Colis c){
+        ColisHistory chistory = new ColisHistory(c);
+        em.persist(chistory);
+        logger.info("Insertion du colis dans la BDD:"+afficheHistorique(chistory));
+        return chistory;
+    }
+
+    public String afficheHistorique(ColisHistory chistory) {
+        return "[ColisHistory:"+chistory.getId()+", ID Colis:"+chistory.getColisId()+"]";
+    }
+
+    public String afficheListeHistorique(List<ColisHistory> l){
+        String str = "Liste Historique BDD:";
+        for(ColisHistory c : l){
+            str += afficheHistorique(c)+" - ";
+        }
+        return str;
     }
 }

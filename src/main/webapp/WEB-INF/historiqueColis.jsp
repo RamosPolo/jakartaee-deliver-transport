@@ -1,3 +1,4 @@
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -20,18 +21,12 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach var="history" items="${histories}">
-        <tr>
-            <td>${history.colisId}</td>
-            <td>${history.poid}</td>
-            <td>${history.prix}</td>
-            <td>(${history.origineX}, ${history.origineY})</td>
-            <td>(${history.destinationX}, ${history.destinationY})</td>
-            <td>(${history.localisationX}, ${history.localisationY})</td>
-            <td>${history.etat}</td>
-            <td>${history.modifiedAt}</td>
-        </tr>
-    </c:forEach>
+    <%
+        List<String> formattedHistories = (List<String>) request.getAttribute("formattedHistories");
+        for (String row : formattedHistories) {
+            out.println(row);
+        }
+    %>
     </tbody>
 </table>
 

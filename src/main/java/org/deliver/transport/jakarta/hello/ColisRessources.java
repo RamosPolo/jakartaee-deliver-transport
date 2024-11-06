@@ -32,7 +32,7 @@ public class ColisRessources {
     @GET
     @Produces("application/json")
     public List<Colis> findAll() {
-        logger.info("Getting all colis");
+        logger.info("Getting all colis (Ressources)");
         return colisRepo.findAll();
     }
 
@@ -42,6 +42,7 @@ public class ColisRessources {
     public Colis create(Colis c) {
         logger.info("Creating colis " + c.getId());
         try{
+            colisRepo.insertHistory(c);
             return colisRepo.create(c);
         }catch (PersistenceException ex){
             logger.info("Error creating colis " + c.getId());
@@ -68,7 +69,9 @@ public class ColisRessources {
     public Colis update(Colis c) {
         logger.info("Updating colis " + c.getId());
         try{
-            return colisRepo.create(c);
+            Colis rest = colisRepo.create(c);
+            colisRepo.insertHistory(c);
+            return rest;
         }catch (PersistenceException ex){
             logger.info("Error updating colis " + c.getId());
             throw new WebApplicationException(Response.Status.BAD_REQUEST);

@@ -13,7 +13,6 @@ public class ColisHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private Long colisId;
     private int poid;
     private float prix;
@@ -48,10 +47,6 @@ public class ColisHistory {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public void setColisId(Long colisId) {
-        this.colisId = colisId;
     }
 
     public void setPoid(int poid) {
@@ -143,6 +138,6 @@ public class ColisHistory {
     }
 
     public String toString(){
-        return "{ A: "+getModifiedAt()+", le colis n°"+getColisId()+" a été modifié. }";
+        return "{ A: "+getModifiedAt()+", le colis num "+getColisId()+" a ete modifie. }";
     }
 }

@@ -47,6 +47,7 @@ public class storeColisServlet extends HttpServlet {
 
         try {
             colisRepo.create(colis);
+            colisRepo.insertHistory(colis);
         } catch (Exception e) {
             throw new ServletException("Erreur lors de la création du colis en base de données", e);
         }
